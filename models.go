@@ -171,15 +171,8 @@ type Placement struct {
 				Cats   []interface{} `json:"cats"`
 				Enable int           `json:"enable"`
 			} `json:"ext_inv"`
-			Socdem struct {
-				GenderEnable int           `json:"gender_enable"`
-				AgeEnable    int           `json:"age_enable"`
-				AgeInvert    int           `json:"age_invert"`
-				GenderInvert int           `json:"gender_invert"`
-				Cats         []interface{} `json:"cats"`
-				Enable       int           `json:"enable"`
-			} `json:"socdem"`
-			Ndr struct {
+			SocDem SocDem `json:"socdem"`
+			Ndr    struct {
 				Cats   []interface{} `json:"cats"`
 				Enable int           `json:"enable"`
 			} `json:"ndr"`
@@ -196,8 +189,7 @@ type Placement struct {
 			Sgm struct {
 				Cats   []interface{} `json:"cats"`
 				Enable int           `json:"enable"`
-				Volume struct {
-				} `json:"volume"`
+				Volume struct{}      `json:"volume"`
 			} `json:"sgm"`
 			Ind struct {
 				Enable int      `json:"enable"`
@@ -253,33 +245,44 @@ type Placement struct {
 				Price          int    `json:"price"`
 			} `json:"doc"`
 		} `json:"target"`
-		HasVpaid4Vast       int         `json:"has_vpaid4vast"`
-		AdStopCatId         int         `json:"ad_stop_cat_id"`
-		TrafficAuditory     int         `json:"traffic_auditory"`
-		IsGb                bool        `json:"is_gb"`
-		SharedModelGuid     interface{} `json:"shared_model_guid"`
-		MaxCpm              int         `json:"max_cpm"`
-		MaxBounceRate       interface{} `json:"max_bounce_rate"`
-		MinCtr              interface{} `json:"min_ctr"`
-		NextSharedModelGuid interface{} `json:"next_shared_model_guid"`
-		NextIndModelGuid    interface{} `json:"next_ind_model_guid"`
-		BotStopStartWeight  int         `json:"bot_stop_start_weight"`
-		MinCpm              int         `json:"min_cpm"`
-		ClientGuid          string      `json:"client_guid"`
-		AdrAdId             int         `json:"adr_ad_id"`
-		DefaultPixels       struct {
-			Dcm      []interface{} `json:"dcm"`
-			Sizmek   []interface{} `json:"sizmek"`
-			TmplHtml []interface{} `json:"tmpl_html"`
-			Native   []interface{} `json:"native"`
-			Tgb      []interface{} `json:"tgb"`
-			Flash    []interface{} `json:"flash"`
-		} `json:"default_pixels"`
-		MinLeadRate   interface{} `json:"min_lead_rate"`
-		Archive       int         `json:"archive"`
-		Guid          string      `json:"guid"`
-		NativeBanners int         `json:"native_banners"`
+		HasVpaid4Vast       int           `json:"has_vpaid4vast"`
+		AdStopCatId         int           `json:"ad_stop_cat_id"`
+		TrafficAuditory     int           `json:"traffic_auditory"`
+		IsGb                bool          `json:"is_gb"`
+		SharedModelGuid     interface{}   `json:"shared_model_guid"`
+		MaxCpm              int           `json:"max_cpm"`
+		MaxBounceRate       interface{}   `json:"max_bounce_rate"`
+		MinCtr              interface{}   `json:"min_ctr"`
+		NextSharedModelGuid interface{}   `json:"next_shared_model_guid"`
+		NextIndModelGuid    interface{}   `json:"next_ind_model_guid"`
+		BotStopStartWeight  int           `json:"bot_stop_start_weight"`
+		MinCpm              int           `json:"min_cpm"`
+		ClientGuid          string        `json:"client_guid"`
+		AdrAdId             int           `json:"adr_ad_id"`
+		DefaultPixels       DefaultPixels `json:"default_pixels"`
+		MinLeadRate         interface{}   `json:"min_lead_rate"`
+		Archive             int           `json:"archive"`
+		Guid                string        `json:"guid"`
+		NativeBanners       int           `json:"native_banners"`
 	} `json:"doc"`
+}
+
+type DefaultPixels struct {
+	Dcm      []interface{} `json:"dcm"`
+	Sizmek   []interface{} `json:"sizmek"`
+	TmplHtml []interface{} `json:"tmpl_html"`
+	Native   []interface{} `json:"native"`
+	Tgb      []interface{} `json:"tgb"`
+	Flash    []interface{} `json:"flash"`
+}
+
+type SocDem struct {
+	GenderEnable int           `json:"gender_enable"`
+	AgeEnable    int           `json:"age_enable"`
+	AgeInvert    int           `json:"age_invert"`
+	GenderInvert int           `json:"gender_invert"`
+	Cats         []interface{} `json:"cats"`
+	Enable       int           `json:"enable"`
 }
 
 func (pI *PlacementsInfo) ToMap() (placements map[string]Placement) {
@@ -298,22 +301,8 @@ type ReqPlacementsStat struct {
 }
 
 type PlacementsStatByDay struct {
-	List []struct {
-		Clicks      int    `json:"clicks"`
-		Cost        int    `json:"cost"`
-		PlacementId string `json:"placement_id"`
-		Exposures   int    `json:"exposures"`
-		Date        string `json:"date"`
-	} `json:"list"`
-	Total struct {
-		ReachRising int `json:"reach_rising"`
-		Checkpoints struct {
-		} `json:"checkpoints"`
-		Clicks    int `json:"clicks"`
-		Reach     int `json:"reach"`
-		Exposures int `json:"exposures"`
-		Cost      int `json:"cost"`
-	} `json:"total"`
+	List       []PerformanceStat `json:"list"`
+	Total      TotalStat         `json:"total"`
 	FormulaLog []struct {
 		TargetGuid          string      `json:"target_guid"`
 		SharedModelLeadRate interface{} `json:"shared_model_lead_rate"`
@@ -332,4 +321,21 @@ type PlacementsStatByDay struct {
 		ClickModelDefault   int         `json:"click_model_default"`
 		AucClick            string      `json:"auc_click"`
 	} `json:"formula_log"`
+}
+
+type PerformanceStat struct {
+	Clicks      int    `json:"clicks"`
+	Cost        int    `json:"cost"`
+	PlacementId string `json:"placement_id"`
+	Exposures   int    `json:"exposures"`
+	Date        string `json:"date"`
+}
+
+type TotalStat struct {
+	ReachRising int      `json:"reach_rising"`
+	Checkpoints struct{} `json:"checkpoints"`
+	Clicks      int      `json:"clicks"`
+	Reach       int      `json:"reach"`
+	Exposures   int      `json:"exposures"`
+	Cost        int      `json:"cost"`
 }
