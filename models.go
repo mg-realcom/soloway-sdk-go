@@ -10,16 +10,16 @@ type AccountInfo struct {
 }
 
 type ClientInfo struct {
-	Name        string      `json:"name"`
-	Email       string      `json:"email"`
-	PartnerGuid interface{} `json:"partner_guid"`
-	Guid        string      `json:"guid"`
+	Name        string `json:"name"`
+	Email       string `json:"email"`
+	PartnerGUID string `json:"partner_guid"`
+	GUID        string `json:"guid"`
 }
 
 type AgencyInfo struct {
 	Name                        string      `json:"name"`
 	AllowBmpAudit               int         `json:"allow_bmp_audit"`
-	DmpAgencyGuid               string      `json:"dmp_agency_guid"`
+	DmpAgencyGUID               string      `json:"dmp_agency_guid"`
 	GlobalSharedModels          int         `json:"global_shared_models"`
 	AllowAlerts                 int         `json:"allow_alerts"`
 	SegmentsDumpsExist          int         `json:"segments_dumps_exist"`
@@ -27,7 +27,7 @@ type AgencyInfo struct {
 	AllowClusterOrders          int         `json:"allow_cluster_orders"`
 	AllowSegmentDump            int         `json:"allow_segment_dump"`
 	AllowExtSegments            int         `json:"allow_ext_segments"`
-	AdrUserId                   int         `json:"adr_user_id"`
+	AdrUserID                   int         `json:"adr_user_id"`
 	AllowAdraudAutoimport       bool        `json:"allow_adraud_autoimport"`
 	AllowNativeCreatives        int         `json:"allow_native_creatives"`
 	AllowAllAuditory            bool        `json:"allow_all_auditory"`
@@ -57,9 +57,9 @@ type AgencyInfo struct {
 	ServiceType                 string      `json:"service_type"`
 	AllowAuditPlacements        int         `json:"allow_audit_placements"`
 	AllowAnalytics              int         `json:"allow_analytics"`
-	Guid                        string      `json:"guid"`
+	GUID                        string      `json:"guid"`
 	AllowSolowayAnalytics       int         `json:"allow_soloway_analytics"`
-	UtmUrlUseDefault            int         `json:"utm_url_use_default"`
+	UtmURLUseDefault            int         `json:"utm_url_use_default"`
 	RefundablePartnerCommission int         `json:"refundable_partner_commission"`
 	GlobalAuditory              int         `json:"global_auditory"`
 	AllowGbPlacements           bool        `json:"allow_gb_placements"`
@@ -70,11 +70,11 @@ type AgencyInfo struct {
 	AllowMicroSegments          bool        `json:"allow_micro_segments"`
 	AllowVpaidCreatives         int         `json:"allow_vpaid_creatives"`
 	AllowSzAutoimport           int         `json:"allow_sz_autoimport"`
-	UtmUrlParams                interface{} `json:"utm_url_params"`
+	UtmURLParams                interface{} `json:"utm_url_params"`
 	LcUtmUseDefault             int         `json:"lc_utm_use_default"`
 	AllowScreenshots            int         `json:"allow_screenshots"`
 	AllowVpaidGbCreatives       int         `json:"allow_vpaid_gb_creatives"`
-	PartnerGuid                 string      `json:"partner_guid"`
+	PartnerGUID                 string      `json:"partner_guid"`
 }
 
 type UserInfo struct {
@@ -82,7 +82,7 @@ type UserInfo struct {
 	Resources   PlacementResource `json:"resources"`
 	Measures    []string          `json:"measures"`
 	Login       string            `json:"login"`
-	Guid        string            `json:"guid"`
+	GUID        string            `json:"guid"`
 	HideFinance int               `json:"hide_finance"`
 	Dimensions  []string          `json:"dimensions"`
 	Name        string            `json:"name"`
@@ -109,26 +109,26 @@ type PlacementsInfo struct {
 
 type Placement struct {
 	Type string `json:"type"`
-	Id   string `json:"id"`
+	ID   string `json:"id"`
 	Doc  struct {
-		SrcPlacementGuid interface{} `json:"src_placement_guid"`
+		SrcPlacementGUID interface{} `json:"src_placement_guid"`
 		Budget           int64       `json:"budget"`
-		AgencyGuid       string      `json:"agency_guid"`
+		AgencyGUID       string      `json:"agency_guid"`
 		TrafficType      string      `json:"traffic_type"`
-		ExtraTargetGuid  interface{} `json:"extra_target_guid"`
+		ExtraTargetGUID  interface{} `json:"extra_target_guid"`
 		UniformDist      int         `json:"uniform_dist"`
 		BotStopPercent   int         `json:"bot_stop_percent"`
-		DefaultUrl       string      `json:"default_url"`
+		DefaultURL       string      `json:"default_url"`
 		Limits           struct {
 			LimitClkDay   int `json:"limit_clk_day"`
 			LimitClkTotal int `json:"limit_clk_total"`
 		} `json:"limits"`
-		OaAdrProfileId        int         `json:"oa_adr_profile_id"`
+		OaAdrProfileID        int         `json:"oa_adr_profile_id"`
 		BlockAnonymousTraffic int         `json:"block_anonymous_traffic"`
 		RealStopDate          *string     `json:"real_stop_date"`
-		NextExtraTargetGuid   interface{} `json:"next_extra_target_guid"`
+		NextExtraTargetGUID   interface{} `json:"next_extra_target_guid"`
 		AutoRenewal           int         `json:"auto_renewal"`
-		TargetGuid            string      `json:"target_guid"`
+		TargetGUID            string      `json:"target_guid"`
 		RealStartDate         string      `json:"real_start_date"`
 		StartTime             string      `json:"start_time"`
 		Timestamp             int         `json:"timestamp"`
@@ -141,16 +141,16 @@ type Placement struct {
 			LimitExpDay   int `json:"limit_exp_day"`
 		} `json:"omp"`
 		Enable            int         `json:"enable"`
-		SiteGuid          string      `json:"site_guid"`
+		SiteGUID          string      `json:"site_guid"`
 		BotStopStopWeight int         `json:"bot_stop_stop_weight"`
 		Balance           int         `json:"balance"`
 		Context           string      `json:"context"`
 		Type              string      `json:"type"`
 		Discount          int         `json:"discount"`
 		Costs             int64       `json:"costs"`
-		NextTargetGuid    interface{} `json:"next_target_guid"`
+		NextTargetGUID    interface{} `json:"next_target_guid"`
 		DayBudget         int         `json:"day_budget"`
-		DmpPlacementGuid  string      `json:"dmp_placement_guid"`
+		DmpPlacementGUID  string      `json:"dmp_placement_guid"`
 		Auditory          struct {
 			Cst struct {
 				Enable int           `json:"enable"`
@@ -232,37 +232,37 @@ type Placement struct {
 				Cats   []interface{} `json:"cats"`
 			} `json:"ndr_inv"`
 		} `json:"auditory"`
-		IndModelGuid interface{} `json:"ind_model_guid"`
+		IndModelGUID interface{} `json:"ind_model_guid"`
 		Target       struct {
 			Type string `json:"type"`
-			Id   string `json:"id"`
+			ID   string `json:"id"`
 			Doc  struct {
-				Guid           string `json:"guid"`
+				GUID           string `json:"guid"`
 				Timestamp      int    `json:"timestamp"`
-				CheckpointGuid string `json:"checkpoint_guid"`
+				CheckpointGUID string `json:"checkpoint_guid"`
 				CheckpointName string `json:"checkpoint_name"`
 				RealPrice      int    `json:"real_price"`
 				Price          int    `json:"price"`
 			} `json:"doc"`
 		} `json:"target"`
 		HasVpaid4Vast       int           `json:"has_vpaid4vast"`
-		AdStopCatId         int           `json:"ad_stop_cat_id"`
+		AdStopCatID         int           `json:"ad_stop_cat_id"`
 		TrafficAuditory     int           `json:"traffic_auditory"`
 		IsGb                bool          `json:"is_gb"`
-		SharedModelGuid     interface{}   `json:"shared_model_guid"`
+		SharedModelGUID     interface{}   `json:"shared_model_guid"`
 		MaxCpm              int           `json:"max_cpm"`
 		MaxBounceRate       interface{}   `json:"max_bounce_rate"`
 		MinCtr              interface{}   `json:"min_ctr"`
-		NextSharedModelGuid interface{}   `json:"next_shared_model_guid"`
-		NextIndModelGuid    interface{}   `json:"next_ind_model_guid"`
+		NextSharedModelGUID interface{}   `json:"next_shared_model_guid"`
+		NextIndModelGUID    interface{}   `json:"next_ind_model_guid"`
 		BotStopStartWeight  int           `json:"bot_stop_start_weight"`
 		MinCpm              int           `json:"min_cpm"`
-		ClientGuid          string        `json:"client_guid"`
-		AdrAdId             int           `json:"adr_ad_id"`
+		ClientGUID          string        `json:"client_guid"`
+		AdrAdID             int           `json:"adr_ad_id"`
 		DefaultPixels       DefaultPixels `json:"default_pixels"`
 		MinLeadRate         interface{}   `json:"min_lead_rate"`
 		Archive             int           `json:"archive"`
-		Guid                string        `json:"guid"`
+		GUID                string        `json:"guid"`
 		NativeBanners       int           `json:"native_banners"`
 	} `json:"doc"`
 }
@@ -270,7 +270,7 @@ type Placement struct {
 type DefaultPixels struct {
 	Dcm      []interface{} `json:"dcm"`
 	Sizmek   []interface{} `json:"sizmek"`
-	TmplHtml []interface{} `json:"tmpl_html"`
+	TmplHTML []interface{} `json:"tmpl_html"`
 	Native   []interface{} `json:"native"`
 	Tgb      []interface{} `json:"tgb"`
 	Flash    []interface{} `json:"flash"`
@@ -286,15 +286,15 @@ type SocDem struct {
 }
 
 func (pI *PlacementsInfo) ToMap() (placements map[string]Placement) {
-	placements = map[string]Placement{}
 	for _, place := range pI.List {
-		placements[place.Id] = place
+		placements[place.ID] = place
 	}
+
 	return placements
 }
 
 type ReqPlacementsStat struct {
-	PlacementIds []string `json:"placement_ids"`
+	PlacementIDS []string `json:"placement_ids"`
 	StartDate    string   `json:"start_date"`
 	StopDate     string   `json:"stop_date"`
 	WithArchived int      `json:"with_archived"`
@@ -304,20 +304,20 @@ type PlacementsStatByDay struct {
 	List       []PerformanceStat `json:"list"`
 	Total      TotalStat         `json:"total"`
 	FormulaLog []struct {
-		TargetGuid          string      `json:"target_guid"`
+		TargetGUID          string      `json:"target_guid"`
 		SharedModelLeadRate interface{} `json:"shared_model_lead_rate"`
 		PidLeadUsed         int         `json:"pid_lead_used"`
 		AucLead             string      `json:"auc_lead"`
-		IndModelGuid        string      `json:"ind_model_guid"`
+		IndModelGUID        string      `json:"ind_model_guid"`
 		AucComplete         interface{} `json:"auc_complete"`
 		PidClickUsed        int         `json:"pid_click_used"`
-		SharedModelGuid     interface{} `json:"shared_model_guid"`
+		SharedModelGUID     interface{} `json:"shared_model_guid"`
 		IndModelLeadRate    interface{} `json:"ind_model_lead_rate"`
 		IndModelAucLead     string      `json:"ind_model_auc_lead"`
 		Timestamp           string      `json:"timestamp"`
 		SharedModelAucLead  interface{} `json:"shared_model_auc_lead"`
-		FormulaId           int         `json:"formula_id"`
-		CheckpointGuid      string      `json:"checkpoint_guid"`
+		FormulaID           int         `json:"formula_id"`
+		CheckpointGUID      string      `json:"checkpoint_guid"`
 		ClickModelDefault   int         `json:"click_model_default"`
 		AucClick            string      `json:"auc_click"`
 	} `json:"formula_log"`
@@ -326,7 +326,7 @@ type PlacementsStatByDay struct {
 type PerformanceStat struct {
 	Clicks      int    `json:"clicks"`
 	Cost        int    `json:"cost"`
-	PlacementId string `json:"placement_id"`
+	PlacementID string `json:"placement_id"`
 	Exposures   int    `json:"exposures"`
 	Date        string `json:"date"`
 }
