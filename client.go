@@ -30,16 +30,16 @@ type Client struct {
 	AccountInfo AccountInfo
 }
 
-func NewClient(username string, password string) *Client {
+func NewClient(tr http.Client, username string, password string) *Client {
 	return &Client{
 		Username: username,
 		Password: password,
-		tr:       http.Client{},
+		tr:       tr,
 	}
 }
 
 // Login sends login request.
-func (c *Client) Login() error {
+func (c *Client) Login(ctx context.Context) error {
 	param := make(map[string]string)
 	param["username"] = c.Username
 	param["password"] = c.Password
@@ -49,7 +49,7 @@ func (c *Client) Login() error {
 		return err
 	}
 
-	req, err := http.NewRequest(http.MethodPost, Host+string(Login), body)
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, Host+string(Login), body)
 	if err != nil {
 		return err
 	}
@@ -246,7 +246,7 @@ func (c *Client) GetPlacementStatByDay(ctx context.Context, placementGUID string
 	return data, nil
 }
 
-// построение тела запроса.
+// Построение тела запроса.
 func buildBody(data map[string]string) (io.Reader, error) {
 	b, err := json.Marshal(data)
 	if err != nil {
@@ -256,7 +256,7 @@ func buildBody(data map[string]string) (io.Reader, error) {
 	return bytes.NewBuffer(b), nil
 }
 
-// построение заголовка запроса.
+// Построение заголовка запроса.
 func buildHeader(req *http.Request, xSid *string) {
 	req.Header.Add("Accept", "application/json")
 	req.Header.Add("Content-Type", "application/json")
@@ -266,11 +266,8 @@ func buildHeader(req *http.Request, xSid *string) {
 	}
 }
 
-// проверка параметра seed.
+// Проверка параметра seed.
 func checkSeed(xSeed string) bool {
-	if xSeed == "" {
-		return false
-	} else {
-		return true
-	}
+
+	return xSeed != ""
 }
