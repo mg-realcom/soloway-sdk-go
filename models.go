@@ -166,10 +166,9 @@ type Placement struct {
 				Enable int           `json:"enable"`
 			} `json:"cst_inv"`
 			ExtInv struct {
-				External struct {
-				} `json:"external"`
-				Cats   []interface{} `json:"cats"`
-				Enable int           `json:"enable"`
+				External struct{}      `json:"external"`
+				Cats     []interface{} `json:"cats"`
+				Enable   int           `json:"enable"`
 			} `json:"ext_inv"`
 			SocDem SocDem `json:"socdem"`
 			Ndr    struct {
@@ -181,10 +180,9 @@ type Placement struct {
 				Enable int           `json:"enable"`
 			} `json:"cls"`
 			Ext struct {
-				Enable   int `json:"enable"`
-				External struct {
-				} `json:"external"`
-				Cats []interface{} `json:"cats"`
+				Enable   int           `json:"enable"`
+				External struct{}      `json:"external"`
+				Cats     []interface{} `json:"cats"`
 			} `json:"ext"`
 			Sgm struct {
 				Cats   []interface{} `json:"cats"`
@@ -196,8 +194,7 @@ type Placement struct {
 				Cats   []string `json:"cats"`
 			} `json:"ind"`
 			Smd struct {
-				Volume struct {
-				} `json:"volume"`
+				Volume struct{}      `json:"volume"`
 				Enable int           `json:"enable"`
 				Cats   []interface{} `json:"cats"`
 			} `json:"smd"`
@@ -208,24 +205,21 @@ type Placement struct {
 			Lal struct {
 				Cats   []interface{} `json:"cats"`
 				Enable int           `json:"enable"`
-				Volume struct {
-				} `json:"volume"`
+				Volume struct{}      `json:"volume"`
 			} `json:"lal"`
 			Rtg struct {
 				Enable int      `json:"enable"`
 				Cats   []string `json:"cats"`
 			} `json:"rtg"`
 			Mcr struct {
-				External struct {
-				} `json:"external"`
-				Cats   []interface{} `json:"cats"`
-				Enable int           `json:"enable"`
+				External struct{}      `json:"external"`
+				Cats     []interface{} `json:"cats"`
+				Enable   int           `json:"enable"`
 			} `json:"mcr"`
 			Csm struct {
-				Enable   int `json:"enable"`
-				External struct {
-				} `json:"external"`
-				Cats []interface{} `json:"cats"`
+				Enable   int           `json:"enable"`
+				External struct{}      `json:"external"`
+				Cats     []interface{} `json:"cats"`
 			} `json:"csm"`
 			NdrInv struct {
 				Enable int           `json:"enable"`
